@@ -1,0 +1,32 @@
+{
+  "taxonomy_version": "v1",
+  "label_space": {
+    "lang": ["zh", "yue", "en", "ja", "ko", "inst", "other"],
+    "genre": ["pop", "rock", "folk", "r&b", "hiphop", "electronic", "classical",
+              "jazz", "metal", "punk", "post-rock", "ost", "acg", "country",
+              "ambient", "world", "other"],
+    "mood": ["happy", "sad", "nostalgic", "calm", "warm", "lonely", "angry",
+             "epic", "tender", "restless", "bittersweet"],
+    "scene": ["study", "workout", "commute", "late_night", "driving", "sleep",
+              "party", "social", "focus"],
+    "energy": "1-5 整数（1=极静 3=中等 5=极烈）",
+    "evidence": ["E1", "E2", "E3"]
+  },
+  "cardinality": {
+    "lang": "恰好 1 个",
+    "genre": "1-3 个，可为 null",
+    "mood": "1-3 个，可为 null",
+    "scene": "0-3 个",
+    "energy": "恰好 1 个整数",
+    "evidence": "恰好 1 个"
+  },
+  "evidence_grades": {
+    "E1": "有可核验的事实支撑（明确知道这首歌本身）",
+    "E2": "基于该歌手其他作品/厂牌/年代的合理推断",
+    "E3": "纯先验猜测 —— 必须同时 uncertain=true，不得作为分类主依据"
+  },
+  "auto_downgrade": {
+    "rule": "pop < 30 或 歌手 musicSize < 50 → 默认 E3 起判",
+    "why": "小众/新歌模型往往零真实知识却会流畅编造曲风（护栏 F1）"
+  }
+}
